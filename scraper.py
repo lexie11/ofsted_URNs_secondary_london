@@ -6,6 +6,7 @@ import lxml.html
 def scrape_table(parameter_a):
     rows = parameter_a.cssselect("ul.results-list.list-unstyled li")  # selects all <li> blocks within <ul class="results-list list-unstyled"> and puts in list variable 'rows'
 #     My guess is it knows to make a list variable because either 'cssselect' function has that written in or it does it automatically because there are multiple table rows
+    print rows
     for row in rows:
         # Set up our data record - we'll need it later
         record = {}
@@ -21,7 +22,7 @@ def scrape_table(parameter_a):
 # function, then hunts for a 'next' link: if one is found, calls itself again
 def scrape_and_look_for_next_link(parameter_b):
     html = scraperwiki.scrape(parameter_b)
-    print html
+#     print html
     root = lxml.html.fromstring(html)
     scrape_table(root)
 #     next_link = root.cssselect("a.pagination__next")
