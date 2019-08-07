@@ -12,7 +12,7 @@ def scrape_table(parameter_a):
         record = {}
         table_cells = row.cssselect("h3")
         if table_cells: 
-            record['School name'] = table_cells[0].text
+            record['School name'] = table_cells[0].text_content()
             # Print out the data we've gathered
             print record, '------------'
             # Finally, save the record to the datastore - 'Artist' is our unique key
