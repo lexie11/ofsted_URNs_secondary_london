@@ -15,7 +15,7 @@ def scrape_table(parameter_a):
         if table_cells: 
             record['School name'] = table_cells[0].text_content()
         if table_cells2:
-            record['School URN and type'] = table_cells2[0].text_content()
+            record['School URN'] = table_cells2[0].text_content()
         # Print out the data we've gathered
         print record, '------------'
         # Finally, save the record to the datastore - 'School name' is our unique key
