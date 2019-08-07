@@ -11,12 +11,15 @@ def scrape_table(parameter_a):
         # Set up our data record - we'll need it later
         record = {}
         table_cells = row.cssselect("h3")
+        table_cells2 = row.cssselect("ul.search-result__provider-info li")
         if table_cells: 
             record['School name'] = table_cells[0].text_content()
-            # Print out the data we've gathered
-            print record, '------------'
-            # Finally, save the record to the datastore - 'Artist' is our unique key
-            scraperwiki.sqlite.save(["School name"], record)
+        if table_cells2:
+            record['School URN and type'] = table_cells2[0].text_content()
+        # Print out the data we've gathered
+        print record, '------------'
+        # Finally, save the record to the datastore - 'School name' is our unique key
+        scraperwiki.sqlite.save(["School name"], record)
         
 # scrape_and_look_for_next_link function: calls the scrape_table
 # function, then hunts for a 'next' link: if one is found, calls itself again
